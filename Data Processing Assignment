@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+void results(int max, int min, string maxName, string minName, int total);
+void noResults();
+int main() {
+string filter, name;
+string sentinel = "done";
+float score;
+int min, max;
+int total = 0;
+string minName, maxName;
+bool data = false; // Used to determine if variables have been initialised or not
+cout << "Enter name to filter. Enter \"all\" to process all records:" << endl;
+cin >> filter;
+cout << "Enter data:" << endl;
+cin >> name;
+if (name == sentinel) { // Exit iff the first name input is the sentinel
+noResults();
+return 0;
+}
+while (name != sentinel && !data) { // This loop repeats until all the variables
+are initialised
+cin >> score;
+filter name matches
+input score is valid
+max = score;
+min = score;
+maxName = name;
+minName = name;
+total += score;
+data = true;
+if (filter == "all" || filter == name) { // Only initialise variables if the
+if (score == int(score) && score >= 0 && !cin.fail()) { // Check that the
+}
+else // Repeats until a matching name has been input
+cin.clear();
+}
+else // If the score is invalid or the name doesn't match the filter
+cin.clear();
+cin >> name;
+} // When the variables are initialised, data is set to true and the main
+inputting can start
+while (name != sentinel) {
+if (filter == "all" || filter == name) {
+cin >> score;
+if (score == int(score) && score >= 0 && !cin.fail()) { // Check that the
+input score is valid
+if (score > max) { // Consider the score for maximum
+max = score;
+maxName = name;if (score < min) { // Consider the score for minimum
+min = score;
+minName = name;
+}
+// Add the score to the running total
+total += score;
+}
+}
+else // If the score is invalid
+cin.clear();
+}
+else // If the input name is not matching the filter
+cin.clear();
+cin >> name;
+}
+// Output the results
+if (data)
+results(max, min, maxName, minName, total);
+else
+noResults();
+return 0;
+}
+void results(int max, int min, string maxName, string minName, int total) {
+cout << "
+-------
+" << endl << "Results" << endl << "
+-------
+" << endl;
+cout << "Minimum: " << minName << ' ' << min << endl;
+cout << "Maximum: " << maxName << ' ' << max << endl;
+cout << "Total: " << total;
+}
+void noResults() {
+cout << "
+-------
+" << endl << "Results" << endl << "
+cout << "Minimum: (no data found)" << endl;
+cout << "Maximum: (no data found)" << endl;
+cout << "Total: (no data found)";
+-------
+" << endl;
+}
